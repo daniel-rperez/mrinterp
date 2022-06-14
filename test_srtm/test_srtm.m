@@ -67,21 +67,18 @@ disp(['Simple (weighted) multiresolution interpolation: ' sId])
 [f_r, x_min,x_max, y_min,y_max]=mrinterpW(x,y,single(z),w, dxy, [mrTile0,mrSmooth], x_min,x_max,y_min,y_max);
 writeRaster(f_r, ['data/' sId '-fr'], x_min,x_max,y_min,y_max, utmZ, utmH);
 
-%disp(['x_min=', num2str(x_min), ', x_max=', num2str(x_max), ', y_min=', num2str(y_min), ', y_max=', num2str(y_max)])
+disp(['x_min=', num2str(x_min), ', x_max=', num2str(x_max), ', y_min=', num2str(y_min), ', y_max=', num2str(y_max)])
 
 clear f_r w
 
-%%%%%%%%%%%%%%%%%%%%%
-if( true )
+
 %Full data fractal interpolation
 disp(['Fractal multiresolution interpolation: ' sId])
-%[f_fr, ~,~,~,~, ~, f_fH]=mrinterpfract(x,y,single(z), dxy, [mrTile0,mrSmooth], x_min,x_max,y_min,y_max);
 f_fr=mrinterpfract(x,y,single(z), dxy, [mrTile0,mrSmooth], x_min,x_max,y_min,y_max);
 writeRaster(f_fr, ['data/' sId '-ffr'], x_min,x_max,y_min,y_max, utmZ, utmH);
-%writeRaster(f_fH, ['data/' sId '-ffH'], x_min,x_max,y_min,y_max, utmZ, utmH);
 
-%disp(['x_min=', num2str(x_min), ', x_max=', num2str(x_max), ', y_min=', num2str(y_min), ', y_max=', num2str(y_max)])
+disp(['x_min=', num2str(x_min), ', x_max=', num2str(x_max), ', y_min=', num2str(y_min), ', y_max=', num2str(y_max)])
 
 clear f_fr
-endif %if( true/false )
+
 
