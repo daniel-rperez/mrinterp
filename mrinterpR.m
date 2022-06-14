@@ -2,9 +2,9 @@
 % [mapa, xmin,xmax, ymin,ymax, mapa0]=mrinterpR(x,y,z, dxy, slev, nR, xmin,xmax,ymin,ymax)
 % x, y, z: coordinates and value
 % dxy: spatial resolution of the raster (same for X and Y)
-% slev: first interpolation level (optional) and smoothing level (nº de niveles de resolución en el que para la interpolación)
-% nR: number of recursion
-% mapa: raster matrix
+% slev: first interpolation level (optional) and smoothing level
+% nR: number of interpolation iterates
+% mapa: interpolated raster matrix
 % xmin, xmax, ymin, ymax: extent
 % mapa0: raster with the projection of the original data points
 function [mapa, xmin,xmax, ymin,ymax, mapa0]=mrinterpR(x,y,z, dxy, slev, nR, xmin,xmax,ymin,ymax)
@@ -83,12 +83,6 @@ function [mapa, xmin,xmax, ymin,ymax, mapa0]=mrinterpR(x,y,z, dxy, slev, nR, xmi
             maplS(i,j)=sum2( map0S(1+(i-1)*b:i*b, 1+(j-1)*b:j*b) );
           endfor
         endfor
-%        % Mucho más lento
-%        mK=ones(b,b);
-%        maplN=conv2(map0N,mK,'same');
-%          maplN=maplN(1:b:end,1:b:end);
-%        maplS=conv2(map0S,mK,'same');
-%          maplS=maplS(1:b:end,1:b:end);
       else
         maplN=1.0*map0N;
         maplS=map0S;
@@ -170,7 +164,7 @@ function s=svar2(m,n)
   endif
 endfunction
 
-%duplicate
+%dupl2
 function b=dupl2(a)
   ha=size(a,1);
   wa=size(a,2);
